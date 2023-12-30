@@ -12,6 +12,7 @@
     "sources": "https://github.com/tildejustin/minecart-turning",
     "issues": "https://github.com/tildejustin/minecart-turning/issues"
   },
+  "icon": "assets/minecart-turning/icon.png",
   "license": "MIT",
   "environment": "*",
   "mixins": [
