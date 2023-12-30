@@ -1,24 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "minecart-turning",
   "version": "${version}",
-  "name": "",
-  "description": "",
+  "name": "Minecart Turning",
+  "description": "MC-201 fix",
   "authors": [
     "tildejustin"
   ],
   "contact": {
-    "homepage": "https://modrinth.com/mod/modid",
-    "sources": "https://github.com/tildejustin/modid",
-    "issues": "https://github.com/tildejustin/modid/issues"
+    "homepage": "https://modrinth.com/mod/minecart-turning",
+    "sources": "https://github.com/tildejustin/minecart-turning",
+    "issues": "https://github.com/tildejustin/minecart-turning/issues"
   },
   "license": "MIT",
   "environment": "*",
   "mixins": [
-    "modid.mixins.json"
+    "minecart-turning.mixins.json"
   ],
   "depends": {
-    "minecraft": "*",
-    "fabric-loader": ">=0.15.0"
+    "minecraft": ">=1.20"
   }
 }

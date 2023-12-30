@@ -1,8 +1,9 @@
 {
   "required": true,
-  "package": "dev.tildejustin.example.mixin",
+  "package": "dev.tildejustin.minecartturning.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "EntityMixin"
   ],
   "client": [
   ],
