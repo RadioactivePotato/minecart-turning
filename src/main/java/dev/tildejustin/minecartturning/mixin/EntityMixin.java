@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-@Debug(export = true)
 @Mixin(Entity.class)
 public abstract class EntityMixin {
     @Shadow
