@@ -20,6 +20,9 @@ loom {
             options.putAll(["mark-corresponding-synthetics": "1", "ind": "    "])
         }
     }
+    mixin {
+        useLegacyMixinAp = false
+    }
 }
 
 dependencies {

@@ -1,39 +1,38 @@
 package dev.tildejustin.minecartturning.mixin;
 
 import net.minecraft.entity.*;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin {
-    @Shadow
-    public abstract float getYaw();
-
-    @Shadow
-    public abstract float getPitch();
-
-    @Shadow
-    public abstract @Nullable Entity getVehicle();
-
-    @Shadow
-    public abstract void setYaw(float yaw);
-
-    @Shadow
-    public abstract void setPitch(float pitch);
-
     @Unique
     private float ridingEntityYawDelta;
 
     @Unique
     private float ridingEntityPitchDelta;
 
+    @Shadow
+    public abstract float getYaw();
+
+    @Shadow
+    public abstract void setYaw(float yaw);
+
+    @Shadow
+    public abstract float getPitch();
+
+    @Shadow
+    public abstract void setPitch(float pitch);
+
+    @Shadow
+    public abstract Entity getVehicle();
+
     @Inject(method = "tickRiding", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;updatePassengerPosition(Lnet/minecraft/entity/Entity;)V", shift = At.Shift.AFTER))
     private void modifyYawAndPitch(CallbackInfo ci) {
         // intellij really doesn't like the "this" check because the nominally disparate class hierarchies at compile-time
         // also Entity#getVehicle is not null at this point in the control flow
-        // noinspection ConstantValue, DataFlowIssue
+        // noinspection ConstantValue
         if (this.getVehicle().getControllingPassenger() == (Object) this) {
             // if this is the controlling passenger, it's already setting the movements of the vehicle
             // for boats, pigs, etc.
