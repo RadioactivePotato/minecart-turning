@@ -1,14 +1,16 @@
 [versions]
-minecraft = "1.20.4"
-yarn_mappings = "1.20.4+build.3"
-fabric_loader = "0.15.6"
-loom = "1.5-SNAPSHOT"
-vineflower = "1.10.0-SNAPSHOT"
+minecraft = "1.21-rc1"
+yarn_mappings = "1.21-rc1+build.1"
+fabric_loader = "0.15.11"
+fabric_api = "0.100.1+1.21"
+loom = "1.6-SNAPSHOT"
+vineflower = "1.10.1"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
 yarn_mappings = { module = "net.fabricmc:yarn", version.ref = "yarn_mappings" }
 fabric_loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric_loader" }
+fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric_api" }
 vineflower = { module = "org.vineflower:vineflower", version.ref = "vineflower" }
 
 [plugins]

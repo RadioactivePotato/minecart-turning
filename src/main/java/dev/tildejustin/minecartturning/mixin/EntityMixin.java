@@ -1,5 +1,6 @@
 package dev.tildejustin.minecartturning.mixin;
 
+import dev.tildejustin.minecartturning.MinecartTurning;
 import net.minecraft.entity.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
@@ -30,6 +31,10 @@ public abstract class EntityMixin {
 
     @Inject(method = "tickRiding", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;updatePassengerPosition(Lnet/minecraft/entity/Entity;)V", shift = At.Shift.AFTER))
     private void modifyYawAndPitch(CallbackInfo ci) {
+        if (!MinecartTurning.isModEnabled()) {
+            return;
+        }
+
         // intellij really doesn't like the "this" check because the nominally disparate class hierarchies at compile-time
         // also Entity#getVehicle is not null at this point in the control flow
         // noinspection ConstantValue
