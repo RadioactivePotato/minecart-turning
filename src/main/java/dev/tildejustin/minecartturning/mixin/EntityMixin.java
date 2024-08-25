@@ -11,8 +11,8 @@ public abstract class EntityMixin {
     @Unique
     private float ridingEntityYawDelta;
 
-    @Unique
-    private float ridingEntityPitchDelta;
+    // @Unique
+    // private float ridingEntityPitchDelta;
 
     @Shadow
     public abstract float getYaw();
@@ -20,11 +20,11 @@ public abstract class EntityMixin {
     @Shadow
     public abstract void setYaw(float yaw);
 
-    @Shadow
-    public abstract float getPitch();
+    // @Shadow
+    // public abstract float getPitch();
 
-    @Shadow
-    public abstract void setPitch(float pitch);
+    // @Shadow
+    // public abstract void setPitch(float pitch);
 
     @Shadow
     public abstract Entity getVehicle();
@@ -52,7 +52,7 @@ public abstract class EntityMixin {
             // from here onwards is just taken from 1.2.5, with minor edits to use getters and such
             this.ridingEntityYawDelta = this.ridingEntityYawDelta + this.getVehicle().getYaw() - this.getVehicle().prevYaw;
         }
-        this.ridingEntityPitchDelta = this.ridingEntityPitchDelta + this.getVehicle().getPitch() - this.getVehicle().prevPitch;
+        // this.ridingEntityPitchDelta = this.ridingEntityPitchDelta + this.getVehicle().getPitch() - this.getVehicle().prevPitch;
 
         while (this.ridingEntityYawDelta >= 180.0) {
             this.ridingEntityYawDelta -= 360.0F;
@@ -62,16 +62,16 @@ public abstract class EntityMixin {
             this.ridingEntityYawDelta += 360.0F;
         }
 
-        while (this.ridingEntityPitchDelta >= 180.0) {
-            this.ridingEntityPitchDelta -= 360.0F;
-        }
+        // while (this.ridingEntityPitchDelta >= 180.0) {
+        //     this.ridingEntityPitchDelta -= 360.0F;
+        // }
 
-        while (this.ridingEntityPitchDelta < -180.0) {
-            this.ridingEntityPitchDelta += 360.0F;
-        }
+        // while (this.ridingEntityPitchDelta < -180.0) {
+        //     this.ridingEntityPitchDelta += 360.0F;
+        // }
 
         var ridingEntityYawDeltaSmooth = this.ridingEntityYawDelta * 0.5F;
-        var ridingEntityPitchDeltaSmooth = this.ridingEntityPitchDelta * 0.5F;
+        // var ridingEntityPitchDeltaSmooth = this.ridingEntityPitchDelta * 0.5F;
 
         var maxTurn = 10F;
         if (ridingEntityYawDeltaSmooth > maxTurn) {
@@ -82,23 +82,23 @@ public abstract class EntityMixin {
             ridingEntityYawDeltaSmooth = -maxTurn;
         }
 
-        if (ridingEntityPitchDeltaSmooth > maxTurn) {
-            ridingEntityPitchDeltaSmooth = maxTurn;
-        }
+        // if (ridingEntityPitchDeltaSmooth > maxTurn) {
+        //     ridingEntityPitchDeltaSmooth = maxTurn;
+        // }
 
-        if (ridingEntityPitchDeltaSmooth < -maxTurn) {
-            ridingEntityPitchDeltaSmooth = -maxTurn;
-        }
+        // if (ridingEntityPitchDeltaSmooth < -maxTurn) {
+        //     ridingEntityPitchDeltaSmooth = -maxTurn;
+        // }
 
         this.ridingEntityYawDelta -= ridingEntityYawDeltaSmooth;
-        this.ridingEntityPitchDelta -= ridingEntityPitchDeltaSmooth;
+        // this.ridingEntityPitchDelta -= ridingEntityPitchDeltaSmooth;
         this.setYaw(this.getYaw() + ridingEntityYawDeltaSmooth);
-        this.setPitch(this.getPitch() + ridingEntityPitchDeltaSmooth);
+        // this.setPitch(this.getPitch() + ridingEntityPitchDeltaSmooth);
     }
 
     @Inject(method = "startRiding(Lnet/minecraft/entity/Entity;Z)Z", at = @At("HEAD"))
     private void resetPitchAndDelta(Entity entity, boolean force, CallbackInfoReturnable<Boolean> cir) {
-        this.ridingEntityPitchDelta = 0.0F;
+        // this.ridingEntityPitchDelta = 0.0F;
         this.ridingEntityYawDelta = 0.0F;
     }
 }
